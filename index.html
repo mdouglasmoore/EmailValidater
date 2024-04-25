@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<style>
+
+    body{
+        height: 860px;
+        background-image: url(./images/pexels-irina-iriser-1420003.jpg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    .alert{
+        display: none;
+        /* height: 10px; */
+    }
+
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        width: 400px;
+        margin-top: 100px;
+        border-radius: 10px;
+        -webkit-box-shadow: 0px 11px 14px 0px #000000; 
+         box-shadow: 0px 11px 14px 0px #000000;
+            
+    }
+
+    .inputs{
+        width: 300px;
+    }
+
+    h2{
+        margin-top: 20px;
+    }
+
+    .btn{
+        margin: 20px;
+        width: 100px;
+    }
+
+    .canada, .usa{
+        display: none;
+    }
+
+    .newsletterOptions{
+        display: none;
+    }
+
+    .bottomContainer{
+        width: 400px;
+        height: 200px;
+        background-color: rgb(66, 135, 33);
+        display: flex;
+        margin-top: 15px;
+        justify-content: center;
+        color: white;
+        display: none;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <h2>Log In</h2>
+        <div class="mb-2 inputs">
+            <label for="email" class="form-label">Email address<sup>*</sup></label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            <div class="alert alert-danger emailErrorMessage">Incorrect Email Format</div>
+            <div class="alert alert-success emailSuccessMessage">Correct</div>
+        </div>
+
+        <div class="mb-2 inputs">
+            <label for="email" class="form-label">Country<sup>*</sup></label>
+                <select class="form-select" aria-label="Default select example" id="country">
+                    <option selected value="select">Select Country</option>
+                    <option value="usa">United States</option>
+                    <option value="canada">Canada</option>
+                </select>
+        </div>
+
+        <div class="canada">
+            <fieldset class="border rounded-3 p-3 mb-2">
+            <legend class="float-none w-auto px-3">Canada</legend>
+            <div class="mb-2 inputs">
+                <label for="province" class="form-label">Province</label>
+                <input type="text" class="form-control" id="province" placeholder="XX">
+                <div class="alert alert-danger provinceErrorMessage">Incorrect Format</div>
+                <div class="alert alert-success provinceSuccessMessage">Correct</div>
+            </div>
+
+            <div class="mb-2 inputs">
+                <label for="postalCode" class="form-label">Postal Code</label>
+                <input type="text" class="form-control" id="postalCode" placeholder="XXX XXX">
+                <div class="alert alert-danger pcErrorMessage">Incorrect Postal Code Format</div>
+                <div class="alert alert-success pcSuccessMessage">Correct</div>
+            </div>
+            </fieldset>
+        </div>
+
+        <div class="usa">
+            <fieldset class="border rounded-3 p-3 mb-2">
+                <legend class="float-none w-auto px-3">United States</legend>    
+                    <div class="mb-2 inputs">
+                        <label for="state">State</label>
+                        <select class="form-select" aria-label="Default select example" id="state">
+                            <option selected value="select">Select State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-2 inputs">
+                        <label for="zipCode">Zip Code</label>
+                        <input type="text" id="zipCode" class="form-control" placeholder="XXXXX">
+                        <div class="alert alert-danger zipcodeErrorMessage">Incorrect Zip Format</div>
+                        <div class="alert alert-success zipcodeSuccessMessage">Correct</div>
+                    </div>
+            </fieldset>
+        </div>
+
+        <div class="mb-2 inputs">
+            <label for="phoneNumber" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="XXXXXXXXXX">
+            <div class="alert alert-danger phoneErrorMessage">Incorrect Phone Number Format</div>
+            <div class="alert alert-success phoneSuccessMessage">Correct</div>
+        </div>
+
+        <div class="mb-2 inputs">
+            <label for="password" class="form-label">Password</label>
+            <input type="text" class="form-control" id="password" placeholder="********">
+            <div class="alert alert-danger minLengthError">At least 8 characters required.</div>
+            <div class="alert alert-success minLengthSuccess">Your password has 8 or more characters.</div>
+        </div>
+
+        <div class="mb-2 inputs">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="text" class="form-control" id="confirmPassword" placeholder="********">
+            <div class="alert alert-danger passwordMismatchErrorMessage">Sorry, password does not match.</div>
+            <div class="alert alert-success passwordMismatchSuccessMessage">Correct</div>
+        </div>
+
+        <div class="form-check form-switch mb-2 inputs">
+            <input class="form-check-input" type="checkbox" role="switch" value="" id="newsletter">
+            <label class="form-check-label" for="newsletter">
+              Subscribe to our newsletter!
+            </label>
+        </div>
+        <div class="newsletterOptions mb-2">
+            <div class="mb-2" style="display: block;">Choose your newsletter frequency.</div>
+            <div class="d-flex">
+                <div class="form-check mb-2 mx-3">
+                    <input class="form-check-input" type="radio" name="newsletterOption" id="nsDaily" value="daily">
+                    <label class="form-check-label" for="nsDaily">Daily</label>
+                </div>
+
+                <div class="form-check mb-2 mx-3">
+                    <input class="form-check-input" type="radio" name="newsletterOption" id="nsWeekly" value="weekly" checked>
+                    <label class="form-check-label" for="nsWeekly">Weekly</label>
+                </div>
+
+                <div class="form-check mb-2 mx-3">
+                    <input class="form-check-input" type="radio" name="newsletterOption" id="nsMonthly" value="monthly">
+                    <label class="form-check-label" for="nsMonthly">Monthly</label>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success" disabled id="submit">Submit</button>
+    </div>
+    <div class="container bottomContainer">
+        <div class="message">
+            <h3>Success!</h3>
+        </div>
+    </div>
+</body>
+
+<script>
+
+// Password Validation
+
+    function hasNumber(myString) {
+        return /\d/.test(myString);
+    }
+
+    function alphaOnly(a) {
+        var b = '';
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] >= 'A' && a[i] <= 'z') b += a[i];
+        }
+        return b;
+    }
+
+    function numberOnly(a) {
+        var b = '';
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] >= '0' && a[i] <= '9') b += a[i];
+        }
+        return b;
+    }
+
+    function hasSpecialChars(string){
+        var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+        if(format.test(string)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isValidPassword(pw) {
+        let length8 = false;
+        let hasOneInteger = false;
+        let hasOneUppercaseChar = false;
+        let hasOneSpecialChar = false;
+
+        if(pw.length >= 8){
+            length8 = true;
+
+            if(hasNumber(pw)){
+                hasOneInteger = true;
+            }
+
+            if(alphaOnly(pw).length >= 1){
+                for(let i=0; i<alphaOnly(pw).length; i++){
+                    if(isUpperCase(alphaOnly(pw).charAt(i))){
+                        hasOneUppercaseChar = true;
+                    }
+                }
+            }
+
+            if(hasSpecialChars(pw)){
+                hasOneSpecialChar = true;
+            }
+
+        }
+
+        if(length8 && hasOneInteger && hasOneUppercaseChar && hasOneSpecialChar){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+// Postal Code Validation
+
+
+    function isLetter(c) {
+        return c.toLowerCase() != c.toUpperCase();
+    }
+
+    function isUpperCase(myString) {
+        return (myString == myString.toUpperCase());
+    }
+
+    function isValidPC(pc){
+        let length7Chars = false;
+        let threeLetters = false;
+        let threeIntegers = false;
+        let isSpace = false;
+
+        if(pc.length == 7){
+
+            length7Chars = true;
+
+            if(isLetter(pc.charAt(0)) && isUpperCase(pc.charAt(0))
+             && isLetter(pc.charAt(2)) && isUpperCase(pc.charAt(2))
+             && isLetter(pc.charAt(5)) && isUpperCase(pc.charAt(5))){
+
+                threeLetters = true;
+            }
+            // Check if int   | convert int | find the char at position
+            if(Number.isInteger(parseInt(pc.charAt(1)))
+             && Number.isInteger(parseInt(pc.charAt(4)))
+             && Number.isInteger(parseInt(pc.charAt(6)))){
+
+                threeIntegers = true;
+            }
+
+            if(pc.charAt(3) == " "){
+                isSpace = true;
+            }
+        }
+
+        if(length7Chars && threeLetters && threeIntegers && isSpace){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    function validPhoneNumber(phone){
+        let firstParenthesis = false;
+        let secondParenthesis = false;
+        let middleDash = false;
+        let tenNumbers = false;
+        if(phone.charAt(0) == '('){
+            firstParenthesis = true;
+        }
+        if(phone.charAt(4) == ')'){
+            secondParenthesis = true;
+        }
+        if(phone.charAt(8) == '-'){
+            middleDash = true;
+        }
+        if (Number.isInteger(parseInt(phone.charAt(1))) &&
+            Number.isInteger(parseInt(phone.charAt(2))) &&
+            Number.isInteger(parseInt(phone.charAt(3)))&&
+            Number.isInteger(parseInt(phone.charAt(5)))&&
+            Number.isInteger(parseInt(phone.charAt(6)))&&
+            Number.isInteger(parseInt(phone.charAt(7)))&&
+            Number.isInteger(parseInt(phone.charAt(9)))&&
+            Number.isInteger(parseInt(phone.charAt(10)))&&
+            Number.isInteger(parseInt(phone.charAt(11)))&&
+            Number.isInteger(parseInt(phone.charAt(12)))
+                ){
+                tenNumbers = true;
+            }
+
+        if(firstParenthesis && secondParenthesis && middleDash && tenNumbers){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+//Email Validation:
+
+    function isValid(email){
+        let oneAtSymbol = false;
+        let oneCharBeforeAt = false;
+        let oneCharAfterAt = false;
+        let domainHasOnePeriod = false;
+        let domainExtHasTwo = false;
+
+        if(email.split("@").length == 2){
+            oneAtSymbol = true;
+            let emailName = email.split("@")[0];
+            let domainName = email.split("@")[1];
+
+            if(emailName.length >= 1){
+                oneCharBeforeAt = true;
+            }
+
+            if(domainName.split(".").length == 2){
+                domainHasOnePeriod = true;
+
+                let domainExt = domainName.split(".")[1];
+                if(domainExt.length >= 2){
+                    domainExtHasTwo = true;
+                }
+
+                if(domainName.split(".")[0].length >= 1){
+                    oneCharAfterAt = true;
+                }
+            }
+
+            // if(domainName.length >= 1){
+            //     oneCharAfterAt = true;
+            //     if(domainName.split(".").length == 2){
+            //         domainHasOnePeriod = true;
+            //     }
+
+            //     let domainExt = domainName.split(".")[1];
+            //     if(domainExt.length >= 2){
+            //         domainExtHasTwo = true;
+            //     }
+            // }
+        }
+
+        if(oneAtSymbol && oneCharBeforeAt && oneCharAfterAt && domainHasOnePeriod && domainExtHasTwo){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+        function matchPassword(password, confirmPassword){
+
+                if(password == confirmPassword){
+                    return true;
+                } else{
+                    return false;
+            }
+
+        }
+
+    $(document).ready(function(){
+
+        let emailValidated = false;
+        let countryValidated = false;
+        let passwordValidated = false;
+
+        function enableSubmit(){
+            if(emailValidated && countryValidated && passwordValidated){
+                $("#submit").attr('disabled', false);
+            } else{
+                $("#submit").attr('disabled', true);
+            }
+        }
+
+        $("#email").on("keyup", function(){
+
+            if(isValid($("#email").val())){
+                $("#email").addClass("is-valid").removeClass("is-invalid");
+                $(".emailSuccessMessage").show();
+                $(".emailErrorMessage").hide();
+                emailValidated = true;
+                enableSubmit();
+            } else{
+                $("#email").addClass("is-invalid").removeClass("is-valid");
+                $(".emailSuccessMessage").hide();
+                $(".emailErrorMessage").show();
+                emailValidated = false;
+                enableSubmit();
+            }
+
+        })
+
+        $("#country").on("change", function(){
+
+            let userSelection = $("#country").find(":selected").val();
+            if(userSelection == 'canada'){
+                $(".canada").fadeOut().fadeIn();
+                $(".usa").hide();
+                countryValidated = true;
+                enableSubmit();
+            } if(userSelection == 'usa'){
+                $(".usa").fadeOut().fadeIn();
+                $(".canada").hide();
+                countryValidated = true;
+                enableSubmit();
+            } if(userSelection == 'select'){
+                $(".usa").hide();
+                $(".canada").hide();
+                countryValidated = false;
+                enableSubmit();
+            }
+        })
+
+        $("#zipCode").on("keyup", function(){
+
+            let zipInput = $("#zipCode").val();
+
+            if(alphaOnly(zipInput).length == 0 && zipInput.toString().length == 5 && !isNaN(zipInput)){
+                $("#zipcode").addClass("is-valid").removeClass("is-invalid");
+                $(".zipcodeSuccessMessage").show();
+                $(".zipcodeErrorMessage").hide();
+            } else{ 
+                $("#zipcode").addClass("is-invalid").removeClass("is-valid");
+                $(".zipcodeSuccessMessage").hide();
+                $(".zipcodeErrorMessage").show();
+
+            }
+
+        })
+
+        $("#phoneNumber").on("keyup", function(){
+
+            let phoneInput = $("#phoneNumber").val();
+
+            if(validPhoneNumber(phoneInput) && phoneInput.toString().length == 13){
+                $("#phoneNumber").addClass("is-valid").removeClass("is-invalid");
+                $(".phoneSuccessMessage").show();
+                $(".phoneErrorMessage").hide();
+            } else{ 
+                $("#phoneNumber").addClass("is-invalid").removeClass("is-valid");
+                $(".phoneSuccessMessage").hide();
+                $(".phoneErrorMessage").show();
+
+            }
+        })
+
+        $("#postalCode").on("keyup", function(){
+
+            if(isValidPC($("#postalCode").val())){
+                $("#postalCode").addClass("is-valid").removeClass("is-invalid");
+                $(".pcSuccessMessage").show();
+                $(".pcErrorMessage").hide();
+
+            } else{
+                $("#postalCode").addClass("is-invalid").removeClass("is-valid");
+                $(".pcSuccessMessage").hide();
+                $(".pcErrorMessage").show();
+         }
+            
+
+        })
+
+        $("#password").on("keyup", function(){ 
+
+            if(isValidPassword($("#password").val())){
+                $("#password").addClass("is-valid").removeClass("is-invalid");
+                $(".minLengthSuccess").show();
+                $(".minLengthError").hide();
+                passwordValidated = true;
+                enableSubmit();
+
+            } else{
+                $("#password").addClass("is-invalid").removeClass("is-valid");
+                $(".minLengthSuccess").hide();
+                $(".minLengthError").show();
+                passwordValidated = false;
+                enableSubmit();
+            }
+
+        })
+
+            $("#confirmPassword").on('keyup', function(){
+
+                let password = $("password").val();
+
+                if(password == $("#confirmPassword").val()){
+                    $("#confirmPassword").addClass("is-valid").removeClass("is-invalid");
+                    $(".passwordMismatchSuccessMessage").show();
+                    $(".passwordMismatchErrorMessage").hide();
+                } else {
+                    $("#confirmPassword").addClass("is-invalid").removeClass("is-valid");
+                    $(".passwordMismatchSuccessMessage").hide();
+                    $(".passwordMismatchErrorMessage").show();
+                }
+            })
+
+            $("#province").on('keyup', function(){
+
+                let userInput = $("#province").val();
+
+                if(userInput.length == 2 && alphaOnly(userInput).length == 2 && isUpperCase(userInput)){
+                    $("#province").addClass("is-valid").removeClass("is-invalid");
+                    $(".provinceSuccessMessage").show();
+                    $(".provinceErrorMessage").hide();
+
+                } else{
+                    $("#province").addClass("is-invalid").removeClass("is-valid");
+                    $(".provinceSuccessMessage").hide();
+                    $(".provinceErrorMessage").show();
+
+                }
+            })
+
+            $("#newsletter").on("click", function(){
+               if($("#newsletter").prop("checked")){
+                $(".newsletterOptions").fadeIn();
+               } else{
+                $(".newsletterOptions").fadeOut(0);
+               }
+            })
+
+            $("#submit").on("click", function(){
+
+                let json = {
+                    email: $("#email").val(),
+                    phone: $("#phoneNumber").val(),
+                    address: {
+                        country: $("#country").find(":selected").val(),
+                        province: $("#province").val(),
+                        state: $("#state").find(":selected").val(),
+                        postalCode: $("#postalCode").val(),
+                        zipCode: $("#zipCode").val(),
+                    },
+                    newsletter: {
+                        subscription: $("#newsletter").prop("checked"),
+                        frequency: $("input[name='newsletterOption']:checked").val()
+                    }
+                }
+
+                console.log("JSON output:", json);
+
+                $(".bottomContainer").fadeIn();
+            })
+
+            let form_json = {
+                email: "jimmy@thejman.com",
+                address: {
+                    country: "canada",
+                    province: "BC",
+                    postalCode: "V1V 1V1",
+                },
+                phone: "(250)463-5232",
+                newsletter: {
+                    subscription: true,
+                    frequency: "daily"
+                }
+
+            }
+            
+            console.log(form_json);
+
+    });
+
+</script>
+  
+</html>
